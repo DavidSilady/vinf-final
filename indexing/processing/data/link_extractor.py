@@ -90,6 +90,5 @@ def main():
     dictionary.write.mode("overwrite").csv("./links")
 
 
-
 if __name__ == '__main__':
     main()

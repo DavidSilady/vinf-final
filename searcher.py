@@ -8,8 +8,11 @@ from org.apache.lucene.store import SimpleFSDirectory
 from org.apache.lucene.queryparser.classic import QueryParser
 import simplemma
 import csv
+import re
 
 lang_data = simplemma.load_data('sk')
+
+lucene.initVM(vmargs=['-Djava.awt.headless=true'])
 
 # search test
 links_index_path = "./indexing/indexes/links"
@@ -29,7 +32,7 @@ def search_examples(word, num=2):
     examples = []
     for score_doc in score_docs:
         doc = sentences_searcher.doc(score_doc.doc)
-        examples.append(doc)
+        examples.append(doc.get("content"))
     return examples
 
 
@@ -43,7 +46,7 @@ def search(word, distance=0, num=5):
     score_docs = links_searcher.search(built_query, num).scoreDocs
     print("=======================================================")
     print("Word:", word)
-    print("Distance:", distance)
+    # print("Distance:", distance)
 
     for i, score_doc in enumerate(score_docs):
         print("Result", i)
@@ -63,3 +66,27 @@ def search(word, distance=0, num=5):
         print(example)
 
 
+def tokenize_sentence(sentence):
+    string = str(sentence)
+    results = re.findall(r'[^\s!,.?":;]+', string)
+    return results
+
+
+def main():
+    sentence = ""
+    should_continue = ""
+    print("LINK LEMMATIZER WITH EXAMPLES!")
+    while True:
+        sentence = input("Input word sequence: \n")
+
+        words = tokenize_sentence(sentence)
+        for word in words:
+            search(word)
+
+        should_continue = input("Continue? (y/n)\n")
+        if should_continue == "n":
+            break
+
+
+if __name__ == '__main__':
+    main()

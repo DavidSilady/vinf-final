@@ -80,6 +80,10 @@ def main():
 
     # drop None entries
     sentences = sentences.na.drop()
+    sentences = sentences.dropDuplicates()
+
+    # FOLLOWING COMMENTED CODE WAS AN ATTEMPT TO JOIN LINK DICTIONARY WITH SENTENCES
+    # Failed due to skew and complex spark configuration requirements
 
     # tokenize sentences into words
     # tokenized = sentences.select("sentence", tokenize_sentence("sentence").alias("tokens"))
