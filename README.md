@@ -1,12 +1,12 @@
 # vinf-final
 
-#### Build & run
+# Build & run
 
 ```
 git clone https://github.com/DavidSilady/vinf-final.git
 ```
 
-##### Processing
+## Processing
 
 ```
 cd ./indexing/processing
@@ -36,7 +36,7 @@ To stop containers:
 ./stop.sh
 ```
 
-##### Indexing
+## Indexing
 
 ```
 cd ./indexing
@@ -48,7 +48,7 @@ cd ./indexing
 
 Jupyter notebook opens - run all the nodes or play around
 
-##### Searching
+## Searching
 
 ```
 ./build.sh
