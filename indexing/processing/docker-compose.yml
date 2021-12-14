@@ -20,9 +20,9 @@ services:
       - '4040:4040'
     volumes:
     # TODO: change mounts to correct folders
-      - /mnt/c/Users/david/information_retrieval/VI-spark-scripts/data/:/data
-      - /mnt/c/Users/david/information_retrieval/VI-spark-scripts/docker-tmp-volumes/master:/myTemp
-      - /mnt/c/Users/david/information_retrieval/VI-spark-scripts/spark-defaults.conf:/opt/bitnami/spark/conf/spark-defaults.conf
+      - ./data/:/data
+      - ./docker-tmp-volumes/master:/myTemp
+      - ./spark-defaults.conf:/opt/bitnami/spark/conf/spark-defaults.conf
   spark-worker-1:
     image: xsilady/my_spark
     environment:
@@ -37,8 +37,8 @@ services:
       - SPARK_LOCAL_DIRS=/myTemp
     volumes:
     # TODO: change mounts to correct folders
-      - /mnt/c/Users/david/information_retrieval/VI-spark-scripts/data/:/data
-      - /mnt/c/Users/david/information_retrieval/VI-spark-scripts/docker-tmp-volumes/worker1:/myTemp
+      - ./data/:/data
+      - ./docker-tmp-volumes/worker1:/myTemp
   spark-worker-2:
     image: xsilady/my_spark
     environment:
@@ -53,6 +53,6 @@ services:
       - SPARK_LOCAL_DIRS=/myTemp
     volumes:
     # TODO: change mounts to correct folders
-      - /mnt/c/Users/david/information_retrieval/VI-spark-scripts/data/:/data
-      - /mnt/c/Users/david/information_retrieval/VI-spark-scripts/docker-tmp-volumes/worker2:/myTemp
+      - ./data/:/data
+      - ./docker-tmp-volumes/worker2:/myTemp
 
